@@ -18,6 +18,7 @@ python -V
 
 PINNED_PKGS=$(cat <<EOF
 matplotlib <1.4.0
+numpy <=1.8
 EOF
 )
 echo -e "$PINNED_PKGS" > /home/travis/miniconda/conda-meta/pinned
