@@ -113,7 +113,7 @@ def figure(**kwargs):
     '''
     curdoc().figure(**kwargs)
 
-def output_server(docname, session=None, url="default", name=None):
+def output_server(docname, session=None, load_from_config=True, url="default", name=None):
     """ Cause plotting commands to automatically persist plots to a Bokeh server.
 
     Can use explicitly provided Session for persistence, or the default
@@ -148,7 +148,7 @@ def output_server(docname, session=None, url="default", name=None):
         name = url
     if not session:
         if not _default_session:
-            _default_session = Session(name=name, root_url=url)
+            _default_session = Session(name=name, load_from_config=load_from_config, root_url=url)
         session = _default_session
     session.use_doc(docname)
     session.load_document(curdoc())
