@@ -196,6 +196,11 @@ define [
               top: e.pageY - @div.height()/2,
               left: e.pageX - @div.width() - 23,
             })
+          for styleKey, styleValue of @mget('styleProperties')
+            if styleKey == "color"
+              @div.css({ "color": styleValue, })
+            else if styleKey == "backgroundColor"
+              @div.css({ "backgroundColor": styleValue, })
           @div.show()
           break
         else

@@ -398,11 +398,13 @@ def _new_xy_plot(x_range=None, y_range=None, plot_width=None, plot_height=None,
             overlay = BoxSelectionOverlay(tool=tool_obj)
             p.renderers.append(overlay)
         elif tool == "hover":
-            tool_obj = HoverTool(plot=p, always_active=True, tooltips={
-                "index": "$index",
-                "data (x, y)": "($x, $y)",
-                "canvas (x, y)": "($sx, $sy)",
-            })
+            tool_obj = HoverTool(plot=p, always_active=True,
+                                 styleProperties={"color":"white", "backgroundColor":"#4c4e52"},
+                                 tooltips={
+                                     "index": "$index",
+                                     "data (x, y)": "($x, $y)",
+                                     "canvas (x, y)": "($sx, $sy)",
+                                 })
         elif tool == "previewsave":
             tool_obj = PreviewSaveTool(plot=p)
         elif tool == "reset":

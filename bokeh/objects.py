@@ -742,6 +742,8 @@ class HoverTool(Tool):
     renderers = List(Instance(Renderer))
     tooltips = Dict(String, String)
     always_active = Bool(True)
+    styleProperties = Dict(String, String)
+
 
 class ObjectExplorerTool(Tool):
     pass
