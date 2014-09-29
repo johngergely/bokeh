@@ -126,6 +126,7 @@ define [
           @div.empty()
           table = $('<table></table>')
 
+          showDiv = false
           for label, value of @mget("tooltips")
             row = $("<tr></tr>")
             row.append($("<td class='bokeh_tooltip_row_label'>#{ label }: </td>"))
@@ -170,6 +171,7 @@ define [
                   break
                 column = ds.get_column(column_name)
                 dsvalue = column[i]
+                showDiv = true
                 if typeof(dsvalue) == "number"
                   value = value.replace(match, "#{ _format_number(dsvalue) }")
                 else
@@ -196,12 +198,20 @@ define [
               top: e.pageY - @div.height()/2,
               left: e.pageX - @div.width() - 23,
             })
+          useString = @mget('useString')
+          if useString
+            stringColName = @mget('stringColName')
+            stringData = ds.get_column(stringColName)
+            if stringData[i].length > 0
+              showDiv = true
+            @div.append(stringData[i])
           for styleKey, styleValue of @mget('styleProperties')
             if styleKey == "color"
               @div.css({ "color": styleValue, })
             else if styleKey == "backgroundColor"
               @div.css({ "backgroundColor": styleValue, })
-          @div.show()
+          if showDiv == true
+            @div.show()
           break
         else
           @div.hide()

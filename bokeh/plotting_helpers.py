@@ -399,6 +399,8 @@ def _new_xy_plot(x_range=None, y_range=None, plot_width=None, plot_height=None,
             p.renderers.append(overlay)
         elif tool == "hover":
             tool_obj = HoverTool(plot=p, always_active=True,
+                                 useString=False,
+                                 stringColName="formatted_string",
                                  styleProperties={"color":"white", "backgroundColor":"#4c4e52"},
                                  tooltips={
                                      "index": "$index",

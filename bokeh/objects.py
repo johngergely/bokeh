@@ -743,7 +743,8 @@ class HoverTool(Tool):
     tooltips = Dict(String, String)
     always_active = Bool(True)
     styleProperties = Dict(String, String)
-
+    useString=Bool(False)
+    stringColName=String("formatted_string")
 
 class ObjectExplorerTool(Tool):
     pass
