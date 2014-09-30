@@ -164,9 +164,11 @@ define [
               value = value.replace("$sx", "#{ e.bokehX }")
               value = value.replace("$sy", "#{ e.bokehY }")
               while value.indexOf("@") >= 0
+                liveRow = true
                 [match, unused, column_name] = value.match(/(@)(\w*)/)
                 column = ds.get_column(column_name)
                 if not column?
+                  liveRow = false
                   value = value.replace(column_name, "#{ column_name } unknown")
                   break
                 column = ds.get_column(column_name)
@@ -180,7 +182,8 @@ define [
               td.append(span)
 
             row.append(td)
-            table.append(row)
+            if liveRow == true
+              table.append(row)
 
           @div.append(table)
           ow = @plot_view.frame.get('width')
