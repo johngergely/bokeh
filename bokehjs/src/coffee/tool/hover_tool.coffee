@@ -3,8 +3,11 @@ define [
   "underscore",
   "common/collection",
   "sprintf",
+  "common/logging",
   "./tool",
-], (_, Collection, sprintf, Tool) ->
+], (_, Collection, sprintf, Logging, Tool) ->
+
+  logger = Logging.logger
 
   _color_to_hex = (color) ->
     if (color.substr(0, 1) == '#')
@@ -182,6 +185,7 @@ define [
               td.append(span)
 
             row.append(td)
+	    #logger.info(td + " append: " + liveRow)
             if liveRow == true
               table.append(row)
 
@@ -205,14 +209,20 @@ define [
           if useString
             stringColName = @mget('stringColName')
             stringData = ds.get_column(stringColName)
-            if stringData[i].length > 0
-              showDiv = true
-            @div.append(stringData[i])
+            #logger.info(i + ": " + stringData)
+            if stringData
+              if stringData[i].length > 0
+                showDiv = true
+                @div.append(stringData[i])
           for styleKey, styleValue of @mget('styleProperties')
             if styleKey == "color"
               @div.css({ "color": styleValue, })
             else if styleKey == "backgroundColor"
               @div.css({ "backgroundColor": styleValue, })
+            else if styleKey == "position"
+              @div.css({ "position": styleValue, })
+            else if styleKey == "z-index"
+              @div.css({ "z-index": styleValue, })
           if showDiv == true
             @div.show()
           break

@@ -401,7 +401,7 @@ def _new_xy_plot(x_range=None, y_range=None, plot_width=None, plot_height=None,
             tool_obj = HoverTool(plot=p, always_active=True,
                                  useString=False,
                                  stringColName="formatted_string",
-                                 styleProperties={"color":"white", "backgroundColor":"#4c4e52"},
+                                 styleProperties={"color":"white", "backgroundColor":"#4c4e52", "position":"relative", "z-index":"10"},
                                  tooltips={
                                      "index": "$index",
                                      "data (x, y)": "($x, $y)",
